@@ -1,4 +1,4 @@
-import { createClient, TinaClient } from "tinacms/dist/client";
+import { createClient } from "tinacms/dist/client";
 import { queries } from "./__generated__/types";
 
 // Polyfill localStorage for server-side rendering
@@ -12,21 +12,21 @@ if (typeof window === 'undefined') {
   };
 }
 
-// Create a singleton client instance
-let clientInstance: TinaClient | null = null;
+// Construct TinaCloud URL if credentials are available
+const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || 
+               process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || 
+               process.env.HEAD || 
+               'main';
 
-function getClient(): TinaClient {
-  if (!clientInstance) {
-    clientInstance = createClient({
-      url: process.env.NEXT_PUBLIC_TINA_URL || 'http://localhost:4001/graphql',
-      token: process.env.TINA_TOKEN || undefined,
-      queries,
-    });
-  }
-  return clientInstance;
-}
+const apiUrl = clientId 
+  ? `https://content.tinajs.io/1.6/content/${clientId}/github/${branch}`
+  : (process.env.NEXT_PUBLIC_TINA_URL || 'http://localhost:4001/graphql');
 
-const client = getClient();
+export const client = createClient({
+  url: apiUrl,
+  token: process.env.TINA_TOKEN || undefined,
+  queries,
+});
 
 export default client;
-export { client };
