@@ -17,7 +17,7 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
     <Section background={data.background!}>
       <div className="@container mx-auto max-w-5xl px-6">
         <div className="text-center">
-          <h2 data-tina-field={tinaField(data, 'title')} className="text-balance text-4xl font-semibold lg:text-5xl">{data.title}</h2>
+          <h2 data-tina-field={tinaField(data, 'title')} className="text-balance text-4xl font-semibold lg:text-5xl text-primary">{data.title}</h2>
           <p data-tina-field={tinaField(data, 'description')} className="mt-4">{data.description}</p>
         </div>
         <Card className="@min-4xl:max-w-full @min-4xl:grid-cols-3 @min-4xl:divide-x @min-4xl:divide-y-0 mx-auto mt-8 grid max-w-sm divide-y overflow-hidden shadow-zinc-950/5 *:text-center md:mt-16">
@@ -43,18 +43,29 @@ export const Feature: React.FC<PageBlocksFeaturesItems> = (data) => {
   return (
     <div className="group shadow-zinc-950/5">
       <CardHeader className="pb-3">
-        <CardDecorator>
-          {data.icon && (
-            <Icon
-              tinaField={tinaField(data, "icon")}
-              data={{ size: "large", ...data.icon }}
+        {data.image ? (
+          <div className="relative mx-auto w-full h-48 mb-6">
+            <img
+              data-tina-field={tinaField(data, "image")}
+              src={data.image}
+              alt={data.title || ''}
+              className="w-full h-full object-cover rounded-lg"
             />
-          )}
-        </CardDecorator>
+          </div>
+        ) : (
+          <CardDecorator>
+            {data.icon && (
+              <Icon
+                tinaField={tinaField(data, "icon")}
+                data={{ size: "large", ...data.icon }}
+              />
+            )}
+          </CardDecorator>
+        )}
 
         <h3
           data-tina-field={tinaField(data, "title")}
-          className="mt-6 font-medium"
+          className="mt-6 font-medium text-primary"
         >
           {data.title}
         </h3>
@@ -119,6 +130,12 @@ export const featureBlockSchema: Template = {
         },
       },
       fields: [
+        {
+          type: "image",
+          label: "Image",
+          name: "image",
+          description: "Feature image (optional, will be used instead of icon if provided)",
+        },
         iconSchema as any,
         {
           type: "string",

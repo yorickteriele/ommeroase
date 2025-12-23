@@ -11,7 +11,7 @@ export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
     return (
         <Section>
             <div className="text-center">
-                <h2 className="text-balance text-4xl font-semibold lg:text-5xl" data-tina-field={tinaField(data, 'title')}>{data.title}</h2>
+                <h2 className="text-balance text-4xl font-semibold lg:text-5xl text-primary" data-tina-field={tinaField(data, 'title')}>{data.title}</h2>
                 <p className="mt-4" data-tina-field={tinaField(data, 'description')}>{data.description}</p>
 
                 <div className="mt-12 flex flex-wrap justify-center gap-4">

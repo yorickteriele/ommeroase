@@ -4,6 +4,7 @@ import { Inter as FontSans, Lato, Nunito } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { VideoDialogProvider } from "@/components/ui/VideoDialogContext";
 import VideoDialog from "@/components/ui/VideoDialog";
+import { client } from "@/tina/client";
 
 import "@/styles.css";
 import { TailwindIndicator } from "@/components/ui/breakpoint-indicator";
@@ -24,10 +25,21 @@ const lato = Lato({
   weight: "400",
 });
 
-export const metadata: Metadata = {
-  title: "Tina",
-  description: "Tina Cloud Starter",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const globalData = await client.queries.global({
+    relativePath: "index.json",
+  });
+  
+  const siteSettings = globalData?.data?.global?.siteSettings;
+  
+  return {
+    title: siteSettings?.title || "Ommer Oase",
+    description: siteSettings?.description || "Wellness & Massage",
+    icons: {
+      icon: siteSettings?.favicon || "/favicon.ico",
+    },
+  };
+}
 
 export default function RootLayout({
   children,

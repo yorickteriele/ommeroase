@@ -1,58 +1,72 @@
 {
-  "header": {
-    "icon": {
-      "name": "Tina",
-      "color": "orange",
-      "style": "float"
+  "navigation": [
+    {
+      "href": "/wellness",
+      "label": "Wellness"
     },
-    "name": "Tina Starter",
-    "color": "default",
-    "nav": [
-      {
-        "href": "/",
-        "label": "Home"
-      },
-      {
-        "href": "/about",
-        "label": "About"
-      },
-      {
-        "href": "/posts",
-        "label": "Blog"
-      }
-    ]
+    {
+      "href": "/over-mij",
+      "label": "Over mij"
+    },
+    {
+      "href": "/contact",
+      "label": "Contact"
+    }
+  ],
+  "siteSettings": {
+    "title": "Ommer Oase",
+    "description": "Ontspanning en welzijn in hartje Ommen. Ontdek onze wellness behandelingen en massages.",
+    "favicon": "/uploads/general/thumbnail_Ommer_oase_logo_lotus_handen_kleur.jpg"
+  },
+  "header": {
+    "logo": "/uploads/general/thumbnail_Ommer_oase_logo_kleur_welness.jpg",
+    "logoAlt": "Ommer Oase",
+    "backgroundColor": "#ffffff",
+    "transparentBackground": true,
+    "showBorder": true,
+    "ctaButton": {
+      "text": "Boek Nu!",
+      "url": "https://ommeroase.boekingapp.nl/",
+      "newTab": true,
+      "style": "primary"
+    }
   },
   "footer": {
+    "copyrightText": "Ommer Oase,  Wijzigingen voorbehouden",
+    "description": "Ommer Oase\n\nBungalow 147\n\nBesthemerberg 1\n\n7731 PB Ommen\n\n[Ommerland](https://ommerland.nl/)\n\n[T +31(0) 6 46013149](tel:0031646013149)\n\n[E info@ommeroase.nl](mailto:info@ommeroase.nl)\n\n[Plattegrond](https://ommerland.nl/informatie/plattegrond/)\n",
+    "backgroundColor": "#769760",
+    "showLogo": false,
+    "showNavigation": true,
+    "textColor": "#ffffff",
     "social": [
       {
         "icon": {
-          "name": "FaLinkedin"
+          "name": "BiLogoFacebookCircle",
+          "color": "#0866ff",
+          "style": ""
         },
-        "url": "https://www.linkedin.com/company/tinacms"
+        "url": "https://www.facebook.com/OmmerOase/"
       },
       {
         "icon": {
-          "name": "FaGithub"
+          "name": "AiFillInstagram",
+          "color": "#f00075",
+          "style": ""
         },
-        "url": "https://github.com/tinacms/tinacms"
-      },
+        "url": "https://www.instagram.com/ommeroase/"
+      }
+    ],
+    "links": [
       {
-        "icon": {
-          "name": "FaYoutube"
-        },
-        "url": "https://www.youtube.com/@TinaCMS"
-      },
-      {
-        "icon": {
-          "name": "FaXTwitter"
-        },
-        "url": "https://x.com/TinaCMS"
+        "label": "Algemene voorwaarden",
+        "url": "https://www.ommeroase.nl/algemene-voorwaarden/"
       }
     ]
   },
   "theme": {
-    "color": "teal",
+    "color": "#be8e80",
     "font": "sans",
-    "darkMode": "light"
+    "darkMode": "light",
+    "borderRadius": 10
   }
 }

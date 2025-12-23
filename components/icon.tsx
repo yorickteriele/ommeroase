@@ -99,22 +99,38 @@ export const Icon = ({ data, parentColor = '', className = '', tinaField = '' })
 
   const iconColor = color ? (color === 'primary' ? theme!.color : color) : theme!.color;
 
+  // Check if iconColor is a hex value or a predefined color name
+  const isHexColor = iconColor && iconColor.startsWith('#');
+  const colorKey = isHexColor ? 'blue' : iconColor; // fallback to 'blue' for hex colors
+
   if (style == 'circle') {
+    const circleStyles = isHexColor 
+      ? { backgroundColor: iconColor, color: '#ffffff' }
+      : {};
+    const circleClasses = isHexColor 
+      ? '' 
+      : iconColorClass[colorKey]?.circle || iconColorClass['blue'].circle;
+    
     return (
       <div
         {...(tinaField ? { 'data-tina-field': tinaField } : {})} // only render data-tina-field if it exists
-        className={`relative z-10 inline-flex items-center justify-center shrink-0 ${iconSizeClasses} rounded-full ${iconColorClass[iconColor].circle} ${className}`}
+        className={`relative z-10 inline-flex items-center justify-center shrink-0 ${iconSizeClasses} rounded-full ${circleClasses} ${className}`}
+        style={circleStyles}
       >
         <IconSVG className='w-2/3 h-2/3' />
       </div>
     );
   } else {
-    const iconColorClasses =
-      iconColorClass[parentColor === 'primary' && (iconColor === theme!.color || iconColor === 'primary') ? 'white' : iconColor!].regular;
+    const shouldUseWhite = parentColor === 'primary' && (iconColor === theme!.color || iconColor === 'primary');
+    const regularColorKey = shouldUseWhite ? 'white' : colorKey;
+    const iconColorClasses = iconColorClass[regularColorKey]?.regular || iconColorClass['blue'].regular;
+    const customColorStyle = isHexColor && !shouldUseWhite ? { color: iconColor } : {};
+    
     return (
       <IconSVG
         {...(tinaField ? { 'data-tina-field': tinaField } : {})} // only render data-tina-field if it exists
-        className={`${iconSizeClasses} ${iconColorClasses} ${className}`}
+        className={`${iconSizeClasses} ${isHexColor && !shouldUseWhite ? '' : iconColorClasses} ${className}`}
+        style={customColorStyle}
       />
     );
   }

@@ -33,8 +33,28 @@ export default async function Page({
 }
 
 export async function generateStaticParams() {
-  // Return static paths for all pages except home (which is handled by app/page.tsx)
-  return [
-    { urlSegments: ['about'] },
-  ];
+  // Dynamically fetch all pages except home (which is handled by app/page.tsx)
+  const pagesResponse = await client.queries.pageConnection();
+  const pages = pagesResponse.data?.pageConnection?.edges || [];
+  
+  return pages
+    .map((page) => {
+      const filepath = page?.node?._sys?.breadcrumbs?.join('/');
+      // Exclude home page (handled by app/page.tsx) and admin routes
+      if (!filepath || filepath === 'home' || filepath.startsWith('admin')) {
+        return null;
+      }
+      return {
+        urlSegments: filepath.split('/'),
+      };
+    })
+    .filter(Boolean) as { urlSegments: string[] }[];
+  console.error('Error generating static params:', error);
+    
+    // Fallback to known pages if query fails
+    // return [
+    //   { urlSegments: ['wellness'] },
+    //   { urlSegments: ['over-mij'] },
+    //   { urlSegments: ['contact'] },
+    // ];
 }

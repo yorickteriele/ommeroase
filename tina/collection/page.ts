@@ -7,6 +7,8 @@ import { videoBlockSchema } from '@/components/blocks/video';
 import { calloutBlockSchema } from '@/components/blocks/callout';
 import { statsBlockSchema } from '@/components/blocks/stats';
 import { ctaBlockSchema } from '@/components/blocks/call-to-action';
+import { treatmentCardBlockSchema } from '@/components/blocks/treatment-card';
+import { contactInfoBlockSchema } from '@/components/blocks/contact-info';
 
 const Page: Collection = {
   label: 'Pages',
@@ -40,6 +42,8 @@ const Page: Collection = {
         contentBlockSchema,
         testimonialBlockSchema,
         videoBlockSchema,
+        treatmentCardBlockSchema,
+        contactInfoBlockSchema,
       ],
     },
   ],

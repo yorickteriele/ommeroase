@@ -12,14 +12,15 @@ if (typeof window === 'undefined') {
   };
 }
 
-// Construct TinaCloud URL if credentials are available
+// Use local GraphQL server in development, TinaCloud in production
+const isProduction = process.env.NODE_ENV === 'production';
 const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
 const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || 
                process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || 
                process.env.HEAD || 
                'main';
 
-const apiUrl = clientId 
+const apiUrl = isProduction && clientId
   ? `https://content.tinajs.io/1.6/content/${clientId}/github/${branch}`
   : (process.env.NEXT_PUBLIC_TINA_URL || 'http://localhost:4001/graphql');
 
