@@ -9,6 +9,14 @@
       "label": "Over mij"
     },
     {
+      "href": "/giftcard",
+      "label": "Giftcard"
+    },
+    {
+      "href": "/openingstijden",
+      "label": "Openingstijden"
+    },
+    {
       "href": "/contact",
       "label": "Contact"
     }
@@ -59,7 +67,11 @@
     "links": [
       {
         "label": "Algemene voorwaarden",
-        "url": "https://www.ommeroase.nl/algemene-voorwaarden/"
+        "url": "/algemene-voorwaarden"
+      },
+      {
+        "label": "Algemene voorwaarden",
+        "url": "/algemene-voorwaarden"
       }
     ]
   },

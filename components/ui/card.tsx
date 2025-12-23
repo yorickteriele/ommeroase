@@ -81,6 +81,19 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function CardButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="card-button"
+      className={cn(
+        "bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary/90 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 export {
   Card,
   CardHeader,
@@ -89,4 +102,5 @@ export {
   CardAction,
   CardDescription,
   CardContent,
+  CardButton,
 }

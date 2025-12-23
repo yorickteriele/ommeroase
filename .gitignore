@@ -26,4 +26,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.tina/__generated__
+.tina/__generated__package-lock.json

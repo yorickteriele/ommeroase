@@ -11,6 +11,7 @@ import { iconSchema } from "../../tina/fields/icon";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Section } from "../layout/section";
 import { sectionBlockSchemaField } from '../layout/section';
+import Link from "next/link";
 
 export const Features = ({ data }: { data: PageBlocksFeatures }) => {
   return (
@@ -20,7 +21,7 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
           <h2 data-tina-field={tinaField(data, 'title')} className="text-balance text-4xl font-semibold lg:text-5xl text-primary">{data.title}</h2>
           <p data-tina-field={tinaField(data, 'description')} className="mt-4">{data.description}</p>
         </div>
-        <Card className="@min-4xl:max-w-full @min-4xl:grid-cols-3 @min-4xl:divide-x @min-4xl:divide-y-0 mx-auto mt-8 grid max-w-sm divide-y overflow-hidden shadow-zinc-950/5 *:text-center md:mt-16">
+        <Card className="@min-4xl:max-w-full @min-4xl:grid-cols-3 @min-4xl:divide-x @min-4xl:divide-y-0 mx-auto mt-8 grid max-w-sm divide-y overflow-hidden shadow-zinc-950/5 *:text-center md:mt-16 items-stretch">
           {data.items &&
             data.items.map(function (block, i) {
               return <Feature key={i} {...block!} />;
@@ -41,7 +42,7 @@ const CardDecorator = ({ children }: { children: React.ReactNode }) => (
 
 export const Feature: React.FC<PageBlocksFeaturesItems> = (data) => {
   return (
-    <div className="group shadow-zinc-950/5">
+    <div className="group shadow-zinc-950/5 flex flex-col h-full">
       <CardHeader className="pb-3">
         {data.image ? (
           <div className="relative mx-auto w-full h-48 mb-6">
@@ -71,12 +72,24 @@ export const Feature: React.FC<PageBlocksFeaturesItems> = (data) => {
         </h3>
       </CardHeader>
 
-      <CardContent className="text-sm pb-8">
+      <CardContent className="text-sm pb-8 flex-1">
         <TinaMarkdown
           data-tina-field={tinaField(data, "text")}
           content={data.text}
         />
       </CardContent>
+      {data.label && data.url && (
+        <Link 
+          href={data.url}
+          className="mt-4 mx-6 mb-6 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-primary text-white hover:bg-primary/90 transition-colors mt-auto"
+        >
+          <span
+            data-tina-field={tinaField(data, "label")}
+          >
+            {data.label}
+          </span>
+        </Link>
+      )}
     </div>
   );
 };
@@ -146,6 +159,26 @@ export const featureBlockSchema: Template = {
           type: "rich-text",
           label: "Text",
           name: "text",
+        },
+        {
+          label: 'Button Label',
+          name: 'label',
+          type: 'string',
+        },
+        {
+          label: 'Button URL',
+          name: 'url',
+          type: 'string',
+          description: 'The page or URL to link to (e.g., /contact, /wellness)',
+        },
+        {
+          label: 'Type',
+          name: 'type',
+          type: 'string',
+          options: [
+              { label: 'Button', value: 'button' },
+              { label: 'Link', value: 'link' },
+          ],
         },
       ],
     },

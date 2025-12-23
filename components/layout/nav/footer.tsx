@@ -23,31 +23,6 @@ export const Footer = () => {
   return (
     <footer className="border-b pt-20" style={footerStyle}>
       <div className="mx-auto max-w-7xl px-6">
-        {footer?.description && (
-          <div className="prose prose-sm max-w-none mb-8 text-left" style={footer?.textColor ? { color: footer.textColor } : {}}>
-            <TinaMarkdown content={footer.description} />
-          </div>
-        )}
-        
-        {/* Navigation Links */}
-        {footer?.showNavigation && navigation.length > 0 && (
-          <nav className="mb-8">
-            <ul className="flex flex-wrap gap-6 text-sm">
-              {navigation.map((item, index) => (
-                <li key={index}>
-                  <Link 
-                    href={item!.href!} 
-                    className="hover:opacity-80 transition-opacity"
-                    style={footer?.textColor ? { color: footer.textColor } : {}}
-                  >
-                    {item!.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
-        
         <div className="flex flex-wrap items-start gap-8 border-t py-6" style={footer?.textColor ? { borderColor: `${footer.textColor}33` } : {}}>
           <div className="flex flex-col gap-4">
             {footer?.showLogo !== false && header?.logo && (
@@ -59,14 +34,43 @@ export const Footer = () => {
                 />
               </Link>
             )}
-            <span className="text-sm" style={footer?.textColor ? { color: footer.textColor } : {}}>
-              © {new Date().getFullYear()} {copyrightText}
-            </span>
+            {footer?.description && (
+              <div className="prose prose-sm max-w-none text-left" style={footer?.textColor ? { color: footer.textColor } : {}}>
+                <TinaMarkdown content={footer.description} />
+              </div>
+            )}
+            <div className="flex flex-col gap-1">
+              <span className="text-sm" style={footer?.textColor ? { color: footer.textColor } : {}}>
+                © {new Date().getFullYear()} {copyrightText}
+              </span>
+            </div>
           </div>
-
           <div className="flex flex-col gap-4 ml-auto">
+            {footer?.showNavigation && navigation.length > 0 && (
+              <nav>
+                <ul className="flex flex-col gap-2 text-sm">
+                  {navigation.map((item, index) => (
+                    <li key={index}>
+                      <Link 
+                        href={item!.href!} 
+                        className="hover:opacity-80 transition-opacity"
+                        style={footer?.textColor ? { color: footer.textColor } : {}}
+                      >
+                        {item!.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
+          </div>
+        </div>
+
+        {(((footer?.links?.length ?? 0) > 0) || ((footer?.social?.length ?? 0) > 0)) && (
+          <div className="w-full mt-6 pt-4 border-t flex flex-col md:flex-row items-center justify-between gap-4" style={footer?.textColor ? { borderColor: `${footer.textColor}33` } : {}}>
+            {/* Additional Links */}
             {footer?.links && footer.links.length > 0 && (
-              <div className="flex gap-4 text-sm">
+              <div className="flex flex-wrap gap-4 text-sm">
                 {footer.links.map((link, index) => (
                   <Link 
                     key={index} 
@@ -79,9 +83,9 @@ export const Footer = () => {
                 ))}
               </div>
             )}
-            
+            {/* Social Links */}
             {footer?.social && footer.social.length > 0 && (
-              <div className="flex justify-end gap-6 text-sm">
+              <div className="flex gap-6 text-sm">
                 {footer.social.map((link, index) => (
                   <Link 
                     key={`${link!.icon}${index}`} 
@@ -99,7 +103,7 @@ export const Footer = () => {
               </div>
             )}
           </div>
-        </div>
+        )}
       </div>
     </footer>
   );

@@ -122,7 +122,7 @@ const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
   if (image.src) {
     return (
       <Image
-        className='z-2 border-border/25 aspect-15/8 relative rounded-2xl border max-w-full h-auto'
+        className='z-2 border-border/25 relative rounded-2xl border max-w-full h-auto'
         alt={image!.alt || ''}
         src={image!.src!}
         height={4000}

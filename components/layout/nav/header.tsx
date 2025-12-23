@@ -21,7 +21,7 @@ export const Header = () => {
   
   const navClassName = `fixed z-20 w-full backdrop-blur-3xl ${
     header.transparentBackground ? 'bg-transparent' : 'bg-background/50'
-  } ${header.showBorder !== false ? 'border-b' : ''}`;
+  } ${header.showBorder !== false ? 'border-b' : ''} transition-all duration-300 hover:shadow-xl hover:scale-[1.001]`;
   
   const buttonVariantClass = ctaButton?.style === 'outline' 
     ? 'border border-primary text-primary hover:bg-primary hover:text-primary-foreground'
@@ -65,8 +65,11 @@ export const Header = () => {
                     <li key={index}>
                       <Link
                         href={item!.href!}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                        <span>{item!.label}</span>
+                        className="text-muted-foreground group block duration-200 hover:text-primary hover:bg-accent-foreground/5 rounded-sm px-1 py-0.5">
+                        <span className="relative inline-block">
+                          {item!.label}
+                          <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-accent-foreground transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left" />
+                        </span>
                       </Link>
                     </li>
                   ))}
@@ -76,7 +79,7 @@ export const Header = () => {
                     href={ctaButton.url || '#'}
                     target={ctaButton.newTab ? '_blank' : undefined}
                     rel={ctaButton.newTab ? 'noopener noreferrer' : undefined}
-                    className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${buttonVariantClass}`}>
+                    className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${buttonVariantClass} transform transition-transform duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg`}>
                     {ctaButton.text || 'Button'}
                   </a>
                 )}
@@ -90,8 +93,11 @@ export const Header = () => {
                     <li key={index}>
                       <Link
                         href={item!.href!}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                        <span>{item!.label}</span>
+                        className="text-muted-foreground group block duration-200 hover:text-primary hover:bg-accent-foreground/5 rounded-sm px-1 py-0.5">
+                        <span className="relative inline-block">
+                          {item!.label}
+                          <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-accent-foreground transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left" />
+                        </span>
                       </Link>
                     </li>
                   ))}
@@ -101,7 +107,7 @@ export const Header = () => {
                     href={ctaButton.url || '#'}
                     target={ctaButton.newTab ? '_blank' : undefined}
                     rel={ctaButton.newTab ? 'noopener noreferrer' : undefined}
-                    className={`block rounded-md px-4 py-2 text-center font-medium transition-colors mt-4 ${buttonVariantClass}`}>
+                    className={`block rounded-md px-4 py-2 text-center font-medium transition-colors mt-4 ${buttonVariantClass} transform transition-transform duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg`}>
                     {ctaButton.text || 'Button'}
                   </a>
                 )}
@@ -111,4 +117,5 @@ export const Header = () => {
         </div>
       </nav>
     </header>
-  )
+  );
+};

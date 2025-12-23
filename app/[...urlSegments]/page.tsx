@@ -49,12 +49,4 @@ export async function generateStaticParams() {
       };
     })
     .filter(Boolean) as { urlSegments: string[] }[];
-  console.error('Error generating static params:', error);
-    
-    // Fallback to known pages if query fails
-    // return [
-    //   { urlSegments: ['wellness'] },
-    //   { urlSegments: ['over-mij'] },
-    //   { urlSegments: ['contact'] },
-    // ];
 }

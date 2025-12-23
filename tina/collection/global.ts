@@ -348,11 +348,6 @@ const Global: Collection = {
           label: "Border Radius",
           name: "borderRadius",
           description: "Button and card border radius (0-20px)",
-          ui: {
-            min: 0,
-            max: 20,
-            step: 1,
-          },
         },
         {
           type: "string",

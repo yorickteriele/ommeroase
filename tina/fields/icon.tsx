@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Button, wrapFieldsWithMeta } from 'tinacms';
+import { Button } from 'tinacms';
 import { BiChevronRight } from 'react-icons/bi';
 import { GoCircleSlash } from 'react-icons/go';
 import { Icon, IconOptions } from '../../components/icon';
@@ -16,7 +16,7 @@ const parseIconName = (name: string) => {
   }
 };
 
-export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
+export const IconPickerInput = (props: any) => {
   const [filter, setFilter] = React.useState('');
   const filteredBlocks = React.useMemo(() => {
     return Object.keys(IconOptions).filter((name) => {
@@ -24,14 +24,14 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
     });
   }, [filter]);
 
-  const inputLabel = Object.keys(IconOptions).includes(input.value) ? parseIconName(input.value) : 'Select Icon';
+  const inputLabel = Object.keys(IconOptions).includes(props.input.value) ? parseIconName(props.input.value) : 'Select Icon';
 
   //@ts-ignore
-  const InputIcon = IconOptions[input.value] ? IconOptions[input.value] : null;
+  const InputIcon = IconOptions[props.input.value] ? IconOptions[props.input.value] : null;
 
   return (
     <div className='relative z-[1000]'>
-      <input type='text' id={input.name} className='hidden' {...input} />
+      <input type='text' id={props.input.name} className='hidden' {...props.input} />
       <Popover>
         {({ open }) => (
           <>
@@ -78,7 +78,7 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
                             className='relative rounded-lg text-center text-xs py-2 px-3 flex-1 outline-none transition-all ease-out duration-150 hover:text-blue-500 focus:text-blue-500 focus:bg-gray-50 hover:bg-gray-50'
                             key={'clear-input'}
                             onClick={() => {
-                              input.onChange('');
+                              props.input.onChange('');
                               setFilter('');
                               close();
                             }}
@@ -91,7 +91,7 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
                                 className='relative flex items-center justify-center rounded-lg text-center text-xs py-2 px-3 flex-1 outline-none transition-all ease-out duration-150 hover:text-blue-500 focus:text-blue-500 focus:bg-gray-50 hover:bg-gray-50'
                                 key={name}
                                 onClick={() => {
-                                  input.onChange(name);
+                                  props.input.onChange(name);
                                   setFilter('');
                                   close();
                                 }}
@@ -119,7 +119,7 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
       </Popover>
     </div>
   );
-});
+};
 
 export const iconSchema = {
   type: 'object',

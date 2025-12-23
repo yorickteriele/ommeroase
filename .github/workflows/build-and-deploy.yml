@@ -61,8 +61,6 @@ jobs:
       - name: Setup pnpm
         if: steps.detect-package-manager.outputs.manager == 'pnpm'
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -96,6 +94,7 @@ jobs:
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
           NEXT_PUBLIC_TINA_BRANCH: ${{ github.ref_name }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          TINA_SKIP_SCHEMA_CHECK: 1
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

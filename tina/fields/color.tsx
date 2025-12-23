@@ -1,24 +1,24 @@
 import React from 'react';
-import { wrapFieldsWithMeta } from 'tinacms';
+import type { TinaCMS, TinaField } from 'tinacms';
 
 export const colorOptions = ['blue', 'teal', 'green', 'yellow', 'orange', 'red', 'pink', 'purple', 'white'];
 
-export const ColorPickerInput = wrapFieldsWithMeta(({ input }) => {
+export const ColorPickerInput = (props: any) => {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
         <input
           type="color"
-          id={input.name}
-          value={input.value || '#000000'}
-          onChange={(e) => input.onChange(e.target.value)}
+          id={props.input.name}
+          value={props.input.value || '#000000'}
+          onChange={(e) => props.input.onChange(e.target.value)}
           className="w-20 h-10 rounded border border-gray-200 cursor-pointer"
           style={{ padding: '2px' }}
         />
         <input
           type="text"
-          value={input.value || ''}
-          onChange={(e) => input.onChange(e.target.value)}
+          value={props.input.value || ''}
+          onChange={(e) => props.input.onChange(e.target.value)}
           placeholder="#000000"
           className="flex-1 px-3 py-2 border border-gray-200 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
@@ -28,4 +28,4 @@ export const ColorPickerInput = wrapFieldsWithMeta(({ input }) => {
       </div>
     </div>
   );
-});
+};
