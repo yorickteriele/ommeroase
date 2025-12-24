@@ -26,10 +26,18 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
   const pagesResponse = await client.queries.pageConnection();
   const pageEdges: any[] = pagesResponse.data?.pageConnection?.edges || [];
 
+  // Only auto-include pages that explicitly opt-in to navigation via
+  // `showInNavigation: true` frontmatter. Pages explicitly listed in
+  // `content/global/index.json` are still always included.
   const pagesNav = pageEdges
     .map((edge) => {
       const filepath = edge?.node?._sys?.breadcrumbs?.join('/');
       if (!filepath || filepath === 'home' || filepath.startsWith('admin')) return null;
+
+      // Respect explicit opt-in frontmatter from the page's _values
+      const showInNav = !!edge?.node?._values?.showInNavigation;
+      if (!showInNav) return null;
+
       const href = `/${filepath}`;
       const last = filepath.split('/').pop() || '';
       const label = decodeURIComponent(last).replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());

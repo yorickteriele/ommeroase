@@ -27,12 +27,15 @@ export function Blocks(props: Omit<Page, "id" | "_sys" | "_values">) {
     (block): block is import("../../tina/__generated__/types").PageBlocksCta =>
       !!block && (block as any).__typename === "PageBlocksCta"
   );
-  const otherBlocks = props.blocks.filter(
-    (block: any) =>
-      block.__typename !== "PageBlocksTreatmentCard" &&
-      // keep content blocks here so they're rendered normally
-      block.__typename !== "PageBlocksCta"
-  );
+  // If there are treatment blocks, let the TreatmentCategorySwitcher
+  // control where content blocks are rendered (so we don't duplicate them).
+  const otherBlocks = props.blocks.filter((block: any) => {
+    if (block.__typename === "PageBlocksTreatmentCard") return false;
+    if (block.__typename === "PageBlocksCta") return false;
+    // Exclude content blocks only when there are treatment blocks
+    if (block.__typename === "PageBlocksContent" && treatmentBlocks.length > 0) return false;
+    return true;
+  });
 
   return (
     <>
