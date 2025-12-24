@@ -21,8 +21,35 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
     }
   );
 
+  // Ensure pages are included in the navigation so static builds (e.g., GitHub Pages)
+  // always show all site pages even when the global nav is stale or not updated.
+  const pagesResponse = await client.queries.pageConnection();
+  const pageEdges: any[] = pagesResponse.data?.pageConnection?.edges || [];
+
+  const pagesNav = pageEdges
+    .map((edge) => {
+      const filepath = edge?.node?._sys?.breadcrumbs?.join('/');
+      if (!filepath || filepath === 'home' || filepath.startsWith('admin')) return null;
+      const href = `/${filepath}`;
+      const last = filepath.split('/').pop() || '';
+      const label = decodeURIComponent(last).replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+      return { __typename: 'GlobalNavigation', href, label };
+    })
+    .filter(Boolean) as { __typename: 'GlobalNavigation'; href: string; label: string }[];
+
+  const globalNav = globalData.global.navigation || [];
+  const mergedNav = [...globalNav];
+  pagesNav.forEach((p) => {
+    if (!mergedNav.find((item) => item?.href === p.href)) mergedNav.push(p);
+  });
+
+  const effectiveGlobal = {
+    ...globalData.global,
+    navigation: mergedNav,
+  };
+
   return (
-    <LayoutProvider globalSettings={globalData.global} pageData={rawPageData}>
+    <LayoutProvider globalSettings={effectiveGlobal} pageData={rawPageData}>
       <Header />
       <main className="overflow-x-hidden pt-20">
         {children}
