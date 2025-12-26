@@ -5,6 +5,8 @@ import Link from 'next/link';
 import * as React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { components as mdxComponents } from '../mdx-components';
 import { PageBlocksHero, PageBlocksHeroImage } from '../../tina/__generated__/types';
 import { Icon } from '../icon';
 import { Section, sectionBlockSchemaField } from '../layout/section';
@@ -13,6 +15,8 @@ import { TextEffect } from '../motion-primitives/text-effect';
 import { Button } from '../ui/button';
 import HeroVideoDialog from '../ui/hero-video-dialog';
 import { Transition } from 'motion/react';
+import { Mermaid } from './mermaid';
+import { ScriptCopyBtn } from '../magicui/script-copy-btn';
 const transitionVariants = {
   container: {
     visible: {
@@ -68,10 +72,12 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
           </div>
         )}
         {data.tagline && (
-          <div data-tina-field={tinaField(data, 'tagline')}>
-            <TextEffect per='line' preset='fade-in-blur' speedSegment={0.3} delay={0.5} as='p' className='mx-auto mt-8 max-w-2xl text-balance text-lg'>
-              {data.tagline!}
-            </TextEffect>
+          <div data-tina-field={tinaField(data, 'tagline')} className='@container mx-auto max-w-5xl px-6'>
+              <TinaMarkdown content={data.tagline} components={{
+                  mermaid: (props: any) => <Mermaid {...props} />,
+                  scriptCopyBlock: (props: any) => <ScriptCopyBtn {...props} />,
+                }}
+              />
           </div>
         )}
 
@@ -151,7 +157,7 @@ export const heroBlockSchema: Template = {
       name: 'headline',
     },
     {
-      type: 'string',
+      type: 'rich-text',
       label: 'Tagline',
       name: 'tagline',
     },

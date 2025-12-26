@@ -19,7 +19,8 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
       <div className="@container mx-auto max-w-5xl px-6">
         <div className="text-center">
           <h2 data-tina-field={tinaField(data, 'title')} className="text-balance text-4xl font-semibold lg:text-5xl text-primary">{data.title}</h2>
-          <p data-tina-field={tinaField(data, 'description')} className="mt-4">{data.description}</p>
+       <TinaMarkdown content={data.tagLine} />
+
         </div>
         <Card className="@min-4xl:max-w-full @min-4xl:grid-cols-3 @min-4xl:divide-x @min-4xl:divide-y-0 mx-auto mt-8 grid max-w-sm divide-y overflow-hidden shadow-zinc-950/5 *:text-center md:mt-16 items-stretch">
           {data.items &&
@@ -123,9 +124,9 @@ export const featureBlockSchema: Template = {
       name: "title",
     },
     {
-      type: "string",
+      type: "rich-text",
       label: "Description",
-      name: "description",
+      name: "tagLine",
     },
     {
       type: "object",
