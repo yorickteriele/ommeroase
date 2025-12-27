@@ -9,6 +9,9 @@ import { statsBlockSchema } from '@/components/blocks/stats';
 import { ctaBlockSchema } from '@/components/blocks/call-to-action';
 import { treatmentCardBlockSchema } from '@/components/blocks/treatment-card';
 import { contactInfoBlockSchema } from '@/components/blocks/contact-info';
+import { newsBlockSchema } from '@/components/blocks/news';
+import { greenSectionBlockSchema } from '@/components/blocks/green-section';
+import { quantumSectionBlockSchema } from '@/components/blocks/quantum-section';
 
 const Page: Collection = {
   label: 'Pages',
@@ -44,6 +47,9 @@ const Page: Collection = {
         videoBlockSchema,
         treatmentCardBlockSchema,
         contactInfoBlockSchema,
+        newsBlockSchema,
+        greenSectionBlockSchema,
+        quantumSectionBlockSchema,
       ],
     },
   ],

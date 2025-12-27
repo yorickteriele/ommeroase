@@ -11,6 +11,9 @@ import { CallToAction } from "./call-to-action";
 import { TreatmentCard } from "./treatment-card";
 import { TreatmentCategorySwitcher } from "./treatment-category-switcher";
 import { ContactInfo } from "./contact-info";
+import { News } from "./news";
+import { GreenSection } from "./green-section";
+import { QuantumSection } from "./quantum-section";
 
 export function Blocks(props: Omit<Page, "id" | "_sys" | "_values">) {
   if (!props.blocks) return null;
@@ -81,6 +84,12 @@ const Block = (block: PageBlocks) => {
       return <TreatmentCard data={block} />;
     case "PageBlocksContactInfo":
       return <ContactInfo data={block} />;
+    case "PageBlocksNews":
+      return <News data={block} />;
+    case "PageBlocksGreenSection":
+      return <GreenSection data={block} />;
+    case "PageBlocksQuantumSection":
+      return <QuantumSection data={block} />;
     default:
       return null;
   }
