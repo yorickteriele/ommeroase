@@ -29,14 +29,14 @@ export const QuantumSection = ({ data }: { data: PageBlocksQuantumSection }) => 
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <h2 
-            data-tina-field={tinaField(data, 'title')}
+            data-tina-field={tinaField(data as any, 'title')}
             className="text-4xl md:text-5xl font-bold text-primary mb-4"
           >
             {data.title || "Kwantumkracht"}
           </h2>
           {data.subtitle && (
             <p 
-              data-tina-field={tinaField(data, 'subtitle')}
+              data-tina-field={tinaField(data as any, 'subtitle')}
               className="text-xl text-muted-foreground max-w-3xl mx-auto"
             >
               {data.subtitle}
@@ -50,7 +50,7 @@ export const QuantumSection = ({ data }: { data: PageBlocksQuantumSection }) => 
             <div className="relative order-2 lg:order-1">
               <div className="relative rounded-lg overflow-hidden shadow-lg">
                 <img
-                  data-tina-field={tinaField(data, 'sectionImage')}
+                  data-tina-field={tinaField(data as any, 'sectionImage')}
                   src={data.sectionImage}
                   alt={data.title || 'Kwantumkracht'}
                   className="w-full h-[600px] object-cover"
@@ -63,7 +63,7 @@ export const QuantumSection = ({ data }: { data: PageBlocksQuantumSection }) => 
           <div className="order-1 lg:order-2">
             {data.content && (
               <div 
-                data-tina-field={tinaField(data, 'content')}
+                data-tina-field={tinaField(data as any, 'content')}
                 className="prose prose-lg mb-8"
               >
                 <TinaMarkdown content={data.content} />
@@ -80,21 +80,21 @@ export const QuantumSection = ({ data }: { data: PageBlocksQuantumSection }) => 
                     {highlight.icon && (
                       <div className="flex-shrink-0">
                         <Icon
-                          tinaField={tinaField(highlight, "icon")}
+                          tinaField={tinaField(highlight as any, "icon")}
                           data={{ size: "medium", ...highlight.icon }}
                         />
                       </div>
                     )}
                     <div>
                       <h3 
-                        data-tina-field={tinaField(highlight, 'title')}
+                        data-tina-field={tinaField(highlight as any, 'title')}
                         className="font-semibold text-lg text-primary mb-2"
                       >
                         {highlight.title}
                       </h3>
                       {highlight.description && (
                         <p 
-                          data-tina-field={tinaField(highlight, 'description')}
+                          data-tina-field={tinaField(highlight as any, 'description')}
                           className="text-muted-foreground"
                         >
                           {highlight.description}
@@ -111,7 +111,7 @@ export const QuantumSection = ({ data }: { data: PageBlocksQuantumSection }) => 
                 href={data.buttonUrl}
                 className="inline-flex items-center gap-2 text-primary hover:underline text-lg font-medium"
               >
-                <span data-tina-field={tinaField(data, 'buttonLabel')}>
+                <span data-tina-field={tinaField(data as any, 'buttonLabel')}>
                   {data.buttonLabel}
                 </span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

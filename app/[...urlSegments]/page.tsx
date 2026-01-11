@@ -23,10 +23,22 @@ export default async function Page({
     notFound();
   }
 
+  // Fetch news items for the news block
+  let newsItems = [];
+  try {
+    const newsResult = await client.queries.newsConnection({
+      sort: 'date',
+      last: 10,
+    });
+    newsItems = newsResult.data.newsConnection.edges?.map((edge: any) => edge.node) || [];
+  } catch (error) {
+    console.error('Failed to fetch news:', error);
+  }
+
   return (
     <Layout rawPageData={data}>
       <Section>
-        <ClientPage {...data} />
+        <ClientPage {...data} newsItems={newsItems} />
       </Section>
     </Layout>
   );

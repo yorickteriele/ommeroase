@@ -85,11 +85,11 @@ const Block = (block: PageBlocks) => {
     case "PageBlocksContactInfo":
       return <ContactInfo data={block} />;
     case "PageBlocksNews":
-      return <News data={block} />;
+      return <News data={block as any} />;
     case "PageBlocksGreenSection":
-      return <GreenSection data={block} />;
+      return <GreenSection data={block as any} />;
     case "PageBlocksQuantumSection":
-      return <QuantumSection data={block} />;
+      return <QuantumSection data={block as any} />;
     default:
       return null;
   }

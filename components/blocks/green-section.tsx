@@ -8,16 +8,16 @@ import { Icon } from "../icon";
 import { iconSchema } from "../../tina/fields/icon";
 
 interface PageBlocksGreenSection {
-  background?: string;
-  title?: string;
-  subtitle?: string;
+  background?: string | null;
+  title?: string | null;
+  subtitle?: string | null;
   content?: any;
-  sectionImage?: string;
+  sectionImage?: string | null;
   features?: Array<{
     icon?: any;
     title?: string;
     description?: string;
-  }>;
+  }> | null;
 }
 
 export const GreenSection = ({ data }: { data: PageBlocksGreenSection }) => {
@@ -25,7 +25,7 @@ export const GreenSection = ({ data }: { data: PageBlocksGreenSection }) => {
     <Section background={data.background || "bg-emerald-50"}>
       <div className="mx-auto max-w-3xl text-center">
         <h2 
-          data-tina-field={tinaField(data, 'title')}
+          data-tina-field={tinaField(data as any, 'title')}
           className="text-4xl md:text-5xl font-bold text-primary mb-6"
         >
           {data.title || "Groen en puur"}
@@ -33,7 +33,7 @@ export const GreenSection = ({ data }: { data: PageBlocksGreenSection }) => {
         
         {data.subtitle && (
           <p 
-            data-tina-field={tinaField(data, 'subtitle')}
+            data-tina-field={tinaField(data as any, 'subtitle')}
             className="text-lg leading-relaxed text-foreground/90"
           >
             {data.subtitle}

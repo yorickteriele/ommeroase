@@ -5,8 +5,6 @@ import { Section } from "../layout/section";
 import { sectionBlockSchemaField } from '../layout/section';
 import { Card, CardContent, CardHeader } from "../ui/card";
 import Link from "next/link";
-import { useEffect, useState } from 'react';
-import { client } from '@/tina/client';
 
 interface NewsItem {
   id: string;
@@ -20,37 +18,15 @@ interface NewsItem {
 }
 
 interface PageBlocksNews {
-  background?: string;
-  title?: string;
-  subtitle?: string;
-  maxItems?: number;
+  background?: string | null;
+  title?: string | null;
+  subtitle?: string | null;
+  maxItems?: number | null;
+  newsItems?: NewsItem[];
 }
 
 export const News = ({ data }: { data: PageBlocksNews }) => {
-  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const result = await client.queries.newsConnection({
-          sort: 'date',
-          last: 10,
-        });
-        
-        const items = result.data.newsConnection.edges?.map((edge: any) => edge.node) || [];
-        setNewsItems(items);
-      } catch (error) {
-        console.error('Failed to fetch news:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchNews();
-  }, []);
-
-  const displayItems = newsItems.slice(0, data.maxItems || 3);
+  const displayItems = (data.newsItems || []).slice(0, data.maxItems || 3);
 
   return (
     <Section background={data.background || "white"} id="nieuws">
@@ -60,14 +36,14 @@ export const News = ({ data }: { data: PageBlocksNews }) => {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8 rounded-2xl border-2 border-primary/10 bg-gradient-to-br from-teal-50/30 to-cyan-50/30">
         <div className="text-center mb-12">
           <h2 
-            data-tina-field={tinaField(data, 'title')} 
+            data-tina-field={tinaField(data as any, 'title')} 
             className="text-balance text-4xl font-semibold lg:text-5xl text-primary"
           >
             {data.title || "Het laatste nieuws"}
           </h2>
           {data.subtitle && (
             <p 
-              data-tina-field={tinaField(data, 'subtitle')}
+              data-tina-field={tinaField(data as any, 'subtitle')}
               className="mt-4 text-lg text-muted-foreground"
             >
               {data.subtitle}
@@ -75,46 +51,30 @@ export const News = ({ data }: { data: PageBlocksNews }) => {
           )}
         </div>
 
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((i) => (
-              <Card key={i} className="animate-pulse">
-                <div className="h-48 bg-gray-200 rounded-t-lg" />
-                <CardHeader>
-                  <div className="h-6 bg-gray-200 rounded w-3/4 mb-2" />
-                  <div className="h-4 bg-gray-200 rounded w-1/2" />
-                </CardHeader>
-                <CardContent>
-                  <div className="h-4 bg-gray-200 rounded mb-2" />
-                  <div className="h-4 bg-gray-200 rounded w-5/6" />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        ) : displayItems.length === 0 ? (
+        {displayItems.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-muted-foreground">
               Nog geen nieuwsberichten beschikbaar.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayItems.map((item) => (
               <Link 
                 key={item.id} 
                 href={`/nieuws/${item._sys.filename}`}
                 className="group"
               >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-200">
-                  <div className="relative h-48 overflow-hidden rounded-t-lg">
+                <Card className="h-full hover:shadow-lg transition-shadow duration-200 overflow-hidden p-0">
+                  <div className="relative h-48 overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                   </div>
-                  <CardHeader>
-                    <h3 className="text-xl font-semibold text-primary group-hover:text-primary/80 transition-colors">
+                  <CardHeader className="pb-3 pt-4">
+                    <h3 className="text-xl font-semibold text-primary group-hover:text-primary/80 transition-colors line-clamp-2">
                       {item.title}
                     </h3>
                     <p className="text-sm text-muted-foreground">
