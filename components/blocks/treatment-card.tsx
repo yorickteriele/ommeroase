@@ -102,6 +102,9 @@ export const treatmentCardBlockSchema: Template = {
   name: "treatmentCard",
   label: "Treatment Card",
   ui: {
+    itemProps: (item) => ({
+      label: item?.category || "Treatment Card",
+    }),
     previewSrc: "/blocks/features.png",
     defaultItem: {
       category: "Facials",

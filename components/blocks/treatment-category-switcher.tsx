@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Card, CardContent, CardHeader } from "../ui/card";
@@ -19,27 +19,39 @@ export interface TreatmentCategorySwitcherProps {
 
 export const TreatmentCategorySwitcher: React.FC<TreatmentCategorySwitcherProps> = ({ blocks, contentBlocks, ctaBlocks }) => {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [key, setKey] = useState(0);
   const activeBlock = blocks[activeIdx];
+
+  // Force re-render when category changes to update visual display
+  useEffect(() => {
+    setKey(prev => prev + 1);
+  }, [activeIdx]);
 
   return (
     <>
-      <Section background={activeBlock.background!}>
+      <Section key={key} background={activeBlock.background!}>
         <div className="mx-auto max-w-5xl px-6">
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             {blocks.map((block, idx) => (
-              <button
-                key={block.category || idx}
-                data-tina-field={tinaField(block, 'category')}
-                className={`px-5 py-2 rounded-full font-semibold border transition-all duration-200 text-lg shadow-sm
-                  ${idx === activeIdx
-                    ? 'bg-primary text-white border-primary scale-105 shadow-lg'
-                    : 'bg-white/80 text-primary border-primary/30 hover:bg-primary/10 hover:scale-105'}
-                `}
-                style={{ minWidth: 120 }}
-                onClick={() => setActiveIdx(idx)}
-              >
-                {block.category}
-              </button>
+              <div key={block.category || idx} data-tina-field={tinaField(block, 'category')}>
+                <button
+                  className={`px-5 py-2 rounded-full font-semibold border transition-all duration-200 text-lg shadow-sm
+                    ${idx === activeIdx
+                      ? 'bg-primary text-white border-primary scale-105 shadow-lg'
+                      : 'bg-white/80 text-primary border-primary/30 hover:bg-primary/10 hover:scale-105'}
+                  `}
+                  style={{ minWidth: 120 }}
+                  onPointerDown={(e) => {
+                    e.stopPropagation();
+                    setActiveIdx(idx);
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  {block.category}
+                </button>
+              </div>
             ))}
           </div>
           {activeBlock.category && (
