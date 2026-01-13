@@ -1,6 +1,10 @@
 {
   "navigation": [
     {
+      "href": "home",
+      "label": "Home"
+    },
+    {
       "href": "/wellness",
       "label": "Wellness"
     },
