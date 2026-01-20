@@ -5,9 +5,9 @@
 name: Deploy Next.js site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes targeting the default branch or dev
   push:
-    branches: [main]
+    branches: [main, dev]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -18,10 +18,10 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# Allow only one concurrent deployment per branch, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.ref_name }}"
   cancel-in-progress: false
 
 jobs:
@@ -72,6 +72,16 @@ jobs:
           touch public/.nojekyll
       - name: "Setup Pages #2"
         uses: actions/configure-pages@v5
+
+      - name: Set domain based on branch
+        run: |
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "www.ommeroase.nl" > public/CNAME
+            echo "✅ Set CNAME to www.ommeroase.nl for main branch"
+          elif [ "${{ github.ref_name }}" = "dev" ]; then
+            echo "ommeroase.yorickteriele.nl" > public/CNAME
+            echo "✅ Set CNAME to ommeroase.yorickteriele.nl for dev branch"
+          fi
 
 
       - name: Install dependencies
