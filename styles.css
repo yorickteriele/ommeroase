@@ -40,6 +40,27 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  
+  --font-sans: var(--font-lexend);
+  --font-comfortaa: var(--font-comfortaa);
+  --font-quicksand: var(--font-quicksand);
+  --font-nunito: var(--font-nunito);
+  --font-josefin-sans: var(--font-josefin-sans);
+  --font-cormorant: var(--font-cormorant);
+  --font-lora: var(--font-lora);
+  --font-crimson-text: var(--font-crimson-text);
+  --font-playfair: var(--font-playfair);
+  --font-libre-baskerville: var(--font-libre-baskerville);
+  --font-karla: var(--font-karla);
+  --font-lexend: var(--font-lexend);
+  --font-poppins: var(--font-poppins);
+  --font-outfit: var(--font-outfit);
+  --font-sofia-sans: var(--font-sofia-sans);
+  --font-manrope: var(--font-manrope);
+  --font-dm-sans: var(--font-dm-sans);
+  --font-jost: var(--font-jost);
+  --font-spectral: var(--font-spectral);
+  --font-eb-garamond: var(--font-eb-garamond);
 }
 
 :root {
@@ -109,6 +130,15 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Font family mappings - dynamically set by layout */
+body {
+  font-family: var(--body-font), system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font), serif;
 }
 
 @layer base {

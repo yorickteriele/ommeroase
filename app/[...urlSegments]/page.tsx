@@ -30,7 +30,10 @@ export default async function Page({
       sort: 'date',
       last: 10,
     });
-    newsItems = newsResult.data.newsConnection.edges?.map((edge: any) => edge.node) || [];
+    // Filter out draft news items
+    newsItems = newsResult.data.newsConnection.edges
+      ?.map((edge: any) => edge.node)
+      .filter((node: any) => !node.draft) || [];
   } catch (error) {
     console.error('Failed to fetch news:', error);
   }

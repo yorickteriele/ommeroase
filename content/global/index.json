@@ -81,7 +81,8 @@
   },
   "theme": {
     "color": "#be8e80",
-    "font": "sans",
+    "font": "jost",
+    "headingFont": "josefin-sans",
     "darkMode": "light",
     "borderRadius": 10
   }
