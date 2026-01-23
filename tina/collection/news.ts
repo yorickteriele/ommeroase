@@ -7,6 +7,15 @@ const News: Collection = {
   format: 'mdx',
   fields: [
     {
+      type: 'boolean',
+      label: 'Concept',
+      name: 'draft',
+      description: 'Als dit aanstaat is het artikel niet zichtbaar op de website',
+      ui: {
+        defaultValue: true,
+      },
+    },
+    {
       type: 'string',
       label: 'Titel',
       name: 'title',

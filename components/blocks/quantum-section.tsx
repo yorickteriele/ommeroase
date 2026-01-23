@@ -53,7 +53,7 @@ export const QuantumSection = ({ data }: { data: PageBlocksQuantumSection }) => 
                   data-tina-field={tinaField(data as any, 'sectionImage')}
                   src={data.sectionImage}
                   alt={data.title || 'Kwantumkracht'}
-                  className="w-full h-[600px] object-cover"
+                  className="w-full object-cover"
                 />
               </div>
             </div>

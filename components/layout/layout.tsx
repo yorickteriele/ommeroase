@@ -56,8 +56,45 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
     navigation: mergedNav,
   };
 
+  // Map font values to CSS variable names
+  const fontMap: Record<string, string> = {
+    'sans': 'system-ui, sans-serif',
+    'comfortaa': 'var(--font-comfortaa)',
+    'quicksand': 'var(--font-quicksand)',
+    'nunito': 'var(--font-nunito)',
+    'josefin-sans': 'var(--font-josefin-sans)',
+    'cormorant': 'var(--font-cormorant)',
+    'lora': 'var(--font-lora)',
+    'crimson-text': 'var(--font-crimson-text)',
+    'playfair': 'var(--font-playfair)',
+    'libre-baskerville': 'var(--font-libre-baskerville)',
+    'karla': 'var(--font-karla)',
+    'lexend': 'var(--font-lexend)',
+    'poppins': 'var(--font-poppins)',
+    'outfit': 'var(--font-outfit)',
+    'sofia-sans': 'var(--font-sofia-sans)',
+    'manrope': 'var(--font-manrope)',
+    'dm-sans': 'var(--font-dm-sans)',
+    'jost': 'var(--font-jost)',
+    'spectral': 'var(--font-spectral)',
+    'eb-garamond': 'var(--font-eb-garamond)',
+  };
+
+  const bodyFont = fontMap[effectiveGlobal.theme?.font || 'lexend'] || 'var(--font-lexend)';
+  const headingFont = effectiveGlobal.theme?.headingFont === 'inherit' 
+    ? bodyFont 
+    : (fontMap[effectiveGlobal.theme?.headingFont || 'cormorant'] || 'var(--font-cormorant)');
+
   return (
     <LayoutProvider globalSettings={effectiveGlobal} pageData={rawPageData}>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          :root {
+            --body-font: ${bodyFont};
+            --heading-font: ${headingFont};
+          }
+        `
+      }} />
       <Header />
       <main className="overflow-x-hidden pt-20">
         {children}

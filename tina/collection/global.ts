@@ -1,6 +1,7 @@
 import type { Collection } from "tinacms";
 import { ColorPickerInput } from "../fields/color";
 import { iconSchema } from "../fields/icon";
+import { FontPickerInput } from "../fields/font";
 
 const Global: Collection = {
   label: "Global",
@@ -268,35 +269,102 @@ const Global: Collection = {
         {
           type: "string",
           name: "font",
-          label: "Font Family",
+          label: "Broodtekst Lettertype (Body)",
+          description: "Lettertype voor alle tekst op de website",
+          ui: {
+            component: FontPickerInput,
+          },
           options: [
             {
               label: "System Sans",
               value: "sans",
             },
             {
+              label: "Comfortaa",
+              value: "comfortaa",
+            },
+            {
+              label: "Quicksand",
+              value: "quicksand",
+            },
+            {
               label: "Nunito",
               value: "nunito",
             },
             {
-              label: "Lato",
-              value: "lato",
+              label: "Josefin Sans",
+              value: "josefin-sans",
+            },
+            {
+              label: "Cormorant",
+              value: "cormorant",
+            },
+            {
+              label: "Lora",
+              value: "lora",
+            },
+            {
+              label: "Crimson Text",
+              value: "crimson-text",
             },
             {
               label: "Playfair Display",
               value: "playfair",
             },
             {
-              label: "Montserrat",
-              value: "montserrat",
+              label: "Libre Baskerville",
+              value: "libre-baskerville",
+            },
+            {
+              label: "Karla",
+              value: "karla",
+            },
+            {
+              label: "Lexend",
+              value: "lexend",
+            },
+            {
+              label: "Poppins",
+              value: "poppins",
+            },
+            {
+              label: "Outfit",
+              value: "outfit",
+            },
+            {
+              label: "Sofia Sans",
+              value: "sofia-sans",
+            },
+            {
+              label: "Manrope",
+              value: "manrope",
+            },
+            {
+              label: "DM Sans",
+              value: "dm-sans",
+            },
+            {
+              label: "Jost",
+              value: "jost",
+            },
+            {
+              label: "Spectral",
+              value: "spectral",
+            },
+            {
+              label: "EB Garamond",
+              value: "eb-garamond",
             },
           ],
         },
         {
           type: "string",
           name: "headingFont",
-          label: "Heading Font Family",
-          description: "Separate font for headings (optional)",
+          label: "Koptekst Lettertype (Headers)",
+          description: "Lettertype voor alle koppen (H1, H2, H3, etc.)",
+          ui: {
+            component: FontPickerInput,
+          },
           options: [
             {
               label: "Same as body",
@@ -307,20 +375,80 @@ const Global: Collection = {
               value: "sans",
             },
             {
+              label: "Comfortaa",
+              value: "comfortaa",
+            },
+            {
+              label: "Quicksand",
+              value: "quicksand",
+            },
+            {
               label: "Nunito",
               value: "nunito",
             },
             {
-              label: "Lato",
-              value: "lato",
+              label: "Josefin Sans",
+              value: "josefin-sans",
+            },
+            {
+              label: "Cormorant",
+              value: "cormorant",
+            },
+            {
+              label: "Lora",
+              value: "lora",
+            },
+            {
+              label: "Crimson Text",
+              value: "crimson-text",
             },
             {
               label: "Playfair Display",
               value: "playfair",
             },
             {
-              label: "Montserrat",
-              value: "montserrat",
+              label: "Libre Baskerville",
+              value: "libre-baskerville",
+            },
+            {
+              label: "Karla",
+              value: "karla",
+            },
+            {
+              label: "Lexend",
+              value: "lexend",
+            },
+            {
+              label: "Poppins",
+              value: "poppins",
+            },
+            {
+              label: "Outfit",
+              value: "outfit",
+            },
+            {
+              label: "Sofia Sans",
+              value: "sofia-sans",
+            },
+            {
+              label: "Manrope",
+              value: "manrope",
+            },
+            {
+              label: "DM Sans",
+              value: "dm-sans",
+            },
+            {
+              label: "Jost",
+              value: "jost",
+            },
+            {
+              label: "Spectral",
+              value: "spectral",
+            },
+            {
+              label: "EB Garamond",
+              value: "eb-garamond",
             },
           ],
         },

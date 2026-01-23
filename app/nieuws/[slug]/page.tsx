@@ -15,7 +15,8 @@ export default async function NewsDetailPage({
       relativePath: `${resolvedParams.slug}.mdx`,
     });
 
-    if (!data.news) {
+    // Return 404 if news not found or is a draft
+    if (!data.news || data.news.draft) {
       notFound();
     }
 
@@ -33,9 +34,12 @@ export default async function NewsDetailPage({
 export async function generateStaticParams() {
   try {
     const newsListData = await client.queries.newsConnection();
-    const paths = newsListData.data.newsConnection.edges?.map((edge) => ({
-      slug: edge?.node?._sys.filename,
-    })) || [];
+    // Filter out drafts from static params
+    const paths = newsListData.data.newsConnection.edges
+      ?.filter((edge) => !edge?.node?.draft)
+      .map((edge) => ({
+        slug: edge?.node?._sys.filename,
+      })) || [];
 
     return paths;
   } catch (error) {
