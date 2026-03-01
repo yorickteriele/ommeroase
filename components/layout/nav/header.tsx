@@ -21,7 +21,7 @@ export const Header = () => {
   
   const navClassName = `fixed z-20 w-full backdrop-blur-3xl ${
     header.transparentBackground ? 'bg-transparent' : 'bg-background/50'
-  } ${header.showBorder !== false ? 'border-b' : ''} transition-all duration-300 hover:shadow-xl hover:scale-[1.001]`;
+  } ${header.showBorder !== false ? 'border-b' : ''}`;
   
   const buttonVariantClass = ctaButton?.style === 'outline' 
     ? 'border border-primary text-primary hover:bg-primary hover:text-primary-foreground'
@@ -35,7 +35,7 @@ export const Header = () => {
         data-state={menuState && 'active'}
         className={navClassName}
         style={headerStyle}>
-        <div className="mx-auto max-w-6xl px-6 transition-all duration-300">
+        <div className="mx-auto max-w-6xl px-6">
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full items-center justify-between gap-12">
               <Link
@@ -55,20 +55,19 @@ export const Header = () => {
                 onClick={() => setMenuState(!menuState)}
                 aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
                 className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
+                <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6" />
+                <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0" />
               </button>
 
               <div className="hidden lg:flex lg:items-center lg:gap-4">
-                <ul className="flex gap-8 text-sm">
+                <ul className="flex gap-8">
                   {navigation.map((item, index) => (
                     <li key={index}>
                       <Link
                         href={item!.href!}
-                        className="text-muted-foreground group block duration-200 hover:text-primary hover:bg-accent-foreground/5 rounded-sm px-1 py-0.5">
+                        className="block hover:text-primary hover:bg-accent-foreground/5 rounded-sm px-1 py-0.5">
                         <span className="relative inline-block">
                           {item!.label}
-                          <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-accent-foreground transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left" />
                         </span>
                       </Link>
                     </li>
@@ -79,7 +78,7 @@ export const Header = () => {
                     href={ctaButton.url || '#'}
                     target={ctaButton.newTab ? '_blank' : undefined}
                     rel={ctaButton.newTab ? 'noopener noreferrer' : undefined}
-                    className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${buttonVariantClass} transform transition-transform duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg`}>
+                    className={`rounded-md px-4 py-2 font-medium ${buttonVariantClass}`}>
                     {ctaButton.text || 'Button'}
                   </a>
                 )}
@@ -93,10 +92,9 @@ export const Header = () => {
                     <li key={index}>
                       <Link
                         href={item!.href!}
-                        className="text-muted-foreground group block duration-200 hover:text-primary hover:bg-accent-foreground/5 rounded-sm px-1 py-0.5">
+                        className="block hover:text-primary hover:bg-accent-foreground/5 rounded-sm px-1 py-0.5">
                         <span className="relative inline-block">
                           {item!.label}
-                          <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-accent-foreground transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left" />
                         </span>
                       </Link>
                     </li>
@@ -107,7 +105,7 @@ export const Header = () => {
                     href={ctaButton.url || '#'}
                     target={ctaButton.newTab ? '_blank' : undefined}
                     rel={ctaButton.newTab ? 'noopener noreferrer' : undefined}
-                    className={`block rounded-md px-4 py-2 text-center font-medium transition-colors mt-4 ${buttonVariantClass} transform transition-transform duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg`}>
+                    className={`block rounded-md px-4 py-2 text-center font-medium mt-4 ${buttonVariantClass}`}>
                     {ctaButton.text || 'Button'}
                   </a>
                 )}

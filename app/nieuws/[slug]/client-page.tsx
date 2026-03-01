@@ -29,7 +29,7 @@ export default function ClientPage({
     <article className="mx-auto max-w-4xl px-6 py-16">
       <Link 
         href="/#nieuws"
-        className="inline-flex items-center text-sm text-primary hover:underline mb-8"
+        className="inline-flex items-center text-primary hover:underline mb-8"
       >
         ← Terug naar nieuws
       </Link>
@@ -53,7 +53,7 @@ export default function ClientPage({
           {news.title}
         </h1>
 
-        <div className="flex items-center gap-4 text-muted-foreground">
+        <div className="flex items-center gap-4">
           <time 
             data-tina-field={tinaField(news, 'date')}
             dateTime={news.date}
@@ -69,7 +69,7 @@ export default function ClientPage({
         {news.excerpt && (
           <p 
             data-tina-field={tinaField(news, 'excerpt')}
-            className="mt-6 text-xl text-muted-foreground"
+            className="mt-6 text-xl"
           >
             {news.excerpt}
           </p>

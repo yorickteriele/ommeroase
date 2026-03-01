@@ -93,7 +93,7 @@ export const components: Components<{
                 </button>
               </div>
             </form>
-            <div className='mt-3 text-sm text-gray-500'>{props.disclaimer && <TinaMarkdown content={props.disclaimer} />}</div>
+            <div className='mt-3 text-gray-500'>{props.disclaimer && <TinaMarkdown content={props.disclaimer} />}</div>
           </div>
         </div>
       </div>

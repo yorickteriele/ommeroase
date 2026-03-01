@@ -37,7 +37,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: PageBlocksTestimonialTe
         <div>
           <h3 className="font-medium" data-tina-field={tinaField(testimonial, 'author')}>{testimonial.author}</h3>
 
-          <span className="text-muted-foreground block text-sm tracking-wide" data-tina-field={tinaField(testimonial, 'role')}>{testimonial.role}</span>
+          <span className="block tracking-wide" data-tina-field={tinaField(testimonial, 'role')}>{testimonial.role}</span>
 
           <blockquote className="mt-3" data-tina-field={tinaField(testimonial, 'quote')}>
             <p className="text-gray-700 dark:text-gray-300">{testimonial.quote}</p>

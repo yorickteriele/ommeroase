@@ -40,7 +40,7 @@ export const Footer = () => {
               </div>
             )}
             <div className="flex flex-col gap-1">
-              <span className="text-sm" style={footer?.textColor ? { color: footer.textColor } : {}}>
+              <span style={footer?.textColor ? { color: footer.textColor } : {}}>
                 © {new Date().getFullYear()} {copyrightText}
               </span>
             </div>
@@ -48,12 +48,12 @@ export const Footer = () => {
           <div className="flex flex-col gap-4 ml-auto">
             {footer?.showNavigation && navigation.length > 0 && (
               <nav>
-                <ul className="flex flex-col gap-2 text-sm">
+                <ul className="flex flex-col gap-2">
                   {navigation.map((item, index) => (
                     <li key={index}>
                       <Link 
                         href={item!.href!} 
-                        className="hover:opacity-80 transition-opacity"
+                        className="hover:opacity-80"
                         style={footer?.textColor ? { color: footer.textColor } : {}}
                       >
                         {item!.label}
@@ -70,12 +70,12 @@ export const Footer = () => {
           <div className="w-full mt-6 pt-4 border-t flex flex-col md:flex-row items-center justify-between gap-4" style={footer?.textColor ? { borderColor: `${footer.textColor}33` } : {}}>
             {/* Additional Links */}
             {footer?.links && footer.links.length > 0 && (
-              <div className="flex flex-wrap gap-4 text-sm">
+              <div className="flex flex-wrap gap-4">
                 {footer.links.map((link, index) => (
                   <Link 
                     key={index} 
                     href={link!.url!} 
-                    className="hover:opacity-80 transition-opacity"
+                    className="hover:opacity-80"
                     style={footer?.textColor ? { color: footer.textColor } : {}}
                   >
                     {link!.label}
@@ -85,14 +85,14 @@ export const Footer = () => {
             )}
             {/* Social Links */}
             {footer?.social && footer.social.length > 0 && (
-              <div className="flex gap-6 text-sm">
+              <div className="flex gap-6">
                 {footer.social.map((link, index) => (
                   <Link 
                     key={`${link!.icon}${index}`} 
                     href={link!.url!} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="hover:opacity-80 transition-opacity"
+                    className="hover:opacity-80"
                   >
                     <Icon 
                       data={{ ...link!.icon, size: 'small' }} 

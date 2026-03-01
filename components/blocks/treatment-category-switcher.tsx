@@ -35,10 +35,10 @@ export const TreatmentCategorySwitcher: React.FC<TreatmentCategorySwitcherProps>
             {blocks.map((block, idx) => (
               <div key={block.category || idx} data-tina-field={tinaField(block, 'category')}>
                 <button
-                  className={`px-5 py-2 rounded-full font-semibold border transition-all duration-200 text-lg shadow-sm
+                  className={`px-5 py-2 rounded-full font-semibold border text-lg shadow-sm
                     ${idx === activeIdx
-                      ? 'bg-primary text-white border-primary scale-105 shadow-lg'
-                      : 'bg-white/80 text-primary border-primary/30 hover:bg-primary/10 hover:scale-105'}
+                      ? 'bg-primary text-white border-primary shadow-lg'
+                      : 'bg-white/80 text-primary border-primary/30 hover:bg-primary/10'}
                   `}
                   style={{ minWidth: 120 }}
                   onPointerDown={(e) => {
@@ -65,7 +65,7 @@ export const TreatmentCategorySwitcher: React.FC<TreatmentCategorySwitcherProps>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {activeBlock.treatments &&
               activeBlock.treatments.map((treatment, i) => (
-                <Card key={i} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col h-full">
+                <Card key={i} className="overflow-hidden shadow-lg flex flex-col h-full">
                   {treatment?.image && (
                     <div className="flex justify-center items-center pt-6">
                       <Image
@@ -89,7 +89,7 @@ export const TreatmentCategorySwitcher: React.FC<TreatmentCategorySwitcherProps>
                       {treatment?.duration && (
                         <p
                           data-tina-field={tinaField(treatment, "duration")}
-                          className="text-sm text-muted-foreground text-center"
+                          className="text-center"
                         >
                           Duur: {treatment.duration}
                         </p>
@@ -107,7 +107,6 @@ export const TreatmentCategorySwitcher: React.FC<TreatmentCategorySwitcherProps>
                   <CardContent className="flex-grow">
                     <div
                       data-tina-field={tinaField(treatment, "description")}
-                      className="text-sm"
                     >
                       <TinaMarkdown content={treatment?.description} />
                     </div>

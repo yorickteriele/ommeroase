@@ -75,7 +75,7 @@ export const FontPickerInput = (props: any) => {
           ) : (
             <div className="space-y-2">
               <p className="text-base">Dit is een voorbeeld van normale tekst op uw website. Zo ziet alle broodtekst eruit.</p>
-              <p className="text-sm text-gray-600">Ook kleinere tekst zoals beschrijvingen gebruikt dit lettertype.</p>
+              <p className="text-gray-600">Ook kleinere tekst zoals beschrijvingen gebruikt dit lettertype.</p>
             </div>
           )}
         </div>

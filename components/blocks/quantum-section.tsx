@@ -37,7 +37,7 @@ export const QuantumSection = ({ data }: { data: PageBlocksQuantumSection }) => 
           {data.subtitle && (
             <p 
               data-tina-field={tinaField(data as any, 'subtitle')}
-              className="text-xl text-muted-foreground max-w-3xl mx-auto"
+              className="text-xl max-w-3xl mx-auto"
             >
               {data.subtitle}
             </p>
@@ -95,7 +95,6 @@ export const QuantumSection = ({ data }: { data: PageBlocksQuantumSection }) => 
                       {highlight.description && (
                         <p 
                           data-tina-field={tinaField(highlight as any, 'description')}
-                          className="text-muted-foreground"
                         >
                           {highlight.description}
                         </p>

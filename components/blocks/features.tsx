@@ -34,7 +34,7 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
 }
 
 const CardDecorator = ({ children }: { children: React.ReactNode }) => (
-  <div className="relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-zinc-950)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-zinc-950)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:bg-white/5 dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
+  <div className="relative mx-auto size-36 [--color-border:color-mix(in_oklab,var(--color-zinc-950)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-zinc-950)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:bg-white/5 dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
     <div aria-hidden className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px]" />
     <div aria-hidden className="bg-radial to-background absolute inset-0 from-transparent to-75%" />
     <div className="bg-background absolute inset-0 m-auto flex size-12 items-center justify-center border-l border-t">{children}</div>
@@ -73,7 +73,7 @@ export const Feature: React.FC<PageBlocksFeaturesItems> = (data) => {
         </h3>
       </CardHeader>
 
-      <CardContent className="text-sm pb-8 flex-1">
+      <CardContent className="pb-8 flex-1">
         <TinaMarkdown
           data-tina-field={tinaField(data, "text")}
           content={data.text}
@@ -82,7 +82,7 @@ export const Feature: React.FC<PageBlocksFeaturesItems> = (data) => {
       {data.label && data.url && (
         <Link 
           href={data.url}
-          className="mt-4 mx-6 mb-6 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-primary text-white hover:bg-primary/90 transition-colors mt-auto"
+          className="mt-4 mx-6 mb-6 inline-flex items-center justify-center rounded-md px-4 py-2 font-medium bg-primary text-white mt-auto"
         >
           <span
             data-tina-field={tinaField(data, "label")}

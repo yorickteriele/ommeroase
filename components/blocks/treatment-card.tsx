@@ -23,7 +23,7 @@ export const TreatmentCard = ({ data }: { data: PageBlocksTreatmentCard }) => {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {data.treatments &&
             data.treatments.map((treatment, i) => (
-              <Card key={i} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col h-full">
+              <Card key={i} className="overflow-hidden shadow-lg flex flex-col h-full">
                 {treatment?.image && (
                   <div className="flex justify-center items-center pt-6">
                     <Image
@@ -47,7 +47,7 @@ export const TreatmentCard = ({ data }: { data: PageBlocksTreatmentCard }) => {
                     {treatment?.duration && (
                       <p
                         data-tina-field={tinaField(treatment, "duration")}
-                        className="text-sm text-muted-foreground text-center"
+                        className="text-center"
                       >
                         Duur: {treatment.duration}
                       </p>
@@ -65,7 +65,6 @@ export const TreatmentCard = ({ data }: { data: PageBlocksTreatmentCard }) => {
                 <CardContent className="flex-grow">
                   <div
                     data-tina-field={tinaField(treatment, "description")}
-                    className="text-sm"
                   >
                     <TinaMarkdown content={treatment?.description} />
                   </div>

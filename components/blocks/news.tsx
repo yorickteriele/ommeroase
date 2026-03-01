@@ -44,7 +44,7 @@ export const News = ({ data }: { data: PageBlocksNews }) => {
           {data.subtitle && (
             <p 
               data-tina-field={tinaField(data as any, 'subtitle')}
-              className="mt-4 text-lg text-muted-foreground"
+              className="mt-4 text-lg"
             >
               {data.subtitle}
             </p>
@@ -53,7 +53,7 @@ export const News = ({ data }: { data: PageBlocksNews }) => {
 
         {displayItems.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">
+            <p>
               Nog geen nieuwsberichten beschikbaar.
             </p>
           </div>
@@ -65,19 +65,19 @@ export const News = ({ data }: { data: PageBlocksNews }) => {
                 href={`/nieuws/${item._sys.filename}`}
                 className="group"
               >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-200 overflow-hidden p-0">
+                <Card className="h-full overflow-hidden p-0">
                   <div className="relative h-48 overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <CardHeader className="pb-3 pt-4">
-                    <h3 className="text-xl font-semibold text-primary group-hover:text-primary/80 transition-colors line-clamp-2">
+                    <h3 className="text-xl font-semibold text-primary line-clamp-2">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p>
                       {new Date(item.date).toLocaleDateString('nl-NL', {
                         year: 'numeric',
                         month: 'long',
@@ -86,7 +86,7 @@ export const News = ({ data }: { data: PageBlocksNews }) => {
                     </p>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground line-clamp-3">
+                    <p className="line-clamp-3">
                       {item.excerpt}
                     </p>
                   </CardContent>

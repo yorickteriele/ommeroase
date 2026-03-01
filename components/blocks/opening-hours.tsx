@@ -19,17 +19,17 @@ export default function OpeningHours() {
 
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="p-4 rounded-lg bg-white border border-emerald-100 shadow-sm">
-              <h3 className="text-sm font-semibold text-emerald-600">Reguliere dagen</h3>
+              <h3 className="font-semibold text-emerald-600">Reguliere dagen</h3>
               <p className="mt-2">Dinsdag t/m Zaterdag<br/><strong>10:00 – 17:00</strong></p>
             </div>
 
             <div className="p-4 rounded-lg bg-white border border-emerald-100 shadow-sm">
-              <h3 className="text-sm font-semibold text-emerald-600">Afspraken</h3>
+              <h3 className="font-semibold text-emerald-600">Afspraken</h3>
               <p className="mt-2">Behandelingen alleen op afspraak. Vol = Vol. Tijdens behandelingen is de deur gesloten.</p>
             </div>
 
             <div className="p-4 rounded-lg bg-white border border-emerald-100 shadow-sm">
-              <h3 className="text-sm font-semibold text-emerald-600">Vakantiesluiting</h3>
+              <h3 className="font-semibold text-emerald-600">Vakantiesluiting</h3>
               <p className="mt-2">4 t/m 12 juli 2025<br/>23 t/m 28 september 2025</p>
             </div>
           </div>
@@ -39,7 +39,7 @@ export default function OpeningHours() {
             <a href="mailto:info@ommeroase.nl" className="inline-flex items-center justify-center px-5 py-3 border border-emerald-200 rounded-lg text-emerald-700 hover:bg-emerald-50">Stel een vraag</a>
           </div>
 
-          <div className="mt-4 text-sm text-emerald-600">
+          <div className="mt-4 text-emerald-600">
             <strong>Tip:</strong> Voor afspraken tijdens schoolvakanties raden we aan tijdig te reserveren.
           </div>
         </div>

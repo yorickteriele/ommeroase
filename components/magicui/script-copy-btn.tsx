@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Check, Copy } from "lucide-react";
-import { motion } from "motion/react";
 import { useTheme } from "next-themes";
 import { HTMLAttributes, useEffect, useState } from "react";
 import type { Template } from "tinacms";
@@ -90,15 +89,8 @@ export function ScriptCopyBtn({
                     >
                       {pm}
                       {packageManager === pm && (
-                        <motion.div
+                        <div
                           className="absolute inset-x-0 bottom-[1px] mx-auto h-0.5 w-[90%] bg-primary"
-                          layoutId="activeTab"
-                          initial={false}
-                          transition={{
-                            type: "spring",
-                            stiffness: 500,
-                            damping: 30,
-                          }}
                         />
                       )}
                     </Button>
@@ -132,13 +124,13 @@ export function ScriptCopyBtn({
           >
             <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
             <Copy
-              className={`h-4 w-4 transition-all duration-300 ${
-                copied ? "scale-0" : "scale-100"
+              className={`h-4 w-4 ${
+                copied ? "hidden" : ""
               }`}
             />
             <Check
-              className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${
-                copied ? "scale-100" : "scale-0"
+              className={`absolute inset-0 m-auto h-4 w-4 ${
+                copied ? "" : "hidden"
               }`}
             />
           </Button>

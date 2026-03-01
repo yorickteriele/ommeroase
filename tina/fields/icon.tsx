@@ -36,7 +36,7 @@ export const IconPickerInput = (props: any) => {
         {({ open }) => (
           <>
             <PopoverButton>
-              <Button className={`text-sm h-11 px-4 ${InputIcon ? 'h-11' : 'h-10'}`} size='custom' rounded='full' variant={open ? 'secondary' : 'white'}>
+              <Button className={`h-11 px-4 ${InputIcon ? 'h-11' : 'h-10'}`} size='custom' rounded='full' variant={open ? 'secondary' : 'white'}>
                 {InputIcon && <InputIcon className='w-7 mr-1 h-auto fill-current text-blue-500' />}
                 {inputLabel}
                 {!InputIcon && <BiChevronRight className='w-5 h-auto fill-current opacity-70 ml-1' />}
@@ -57,7 +57,7 @@ export const IconPickerInput = (props: any) => {
                       <div className='bg-gray-50 p-2 border-b border-gray-100 z-10 shadow-sm'>
                         <input
                           type='text'
-                          className='bg-white text-sm rounded-sm border border-gray-100 shadow-inner py-1.5 px-2.5 w-full block placeholder-gray-200'
+                          className='bg-white rounded-sm border border-gray-100 shadow-inner py-1.5 px-2.5 w-full block placeholder-gray-200'
                           onClick={(event: any) => {
                             event.stopPropagation();
                             event.preventDefault();

@@ -44,7 +44,6 @@ export const ContactInfo = ({ data }: { data: PageBlocksContactInfo }) => {
                   {item?.value && (
                     <p
                       data-tina-field={tinaField(item, "value")}
-                      className="text-sm"
                     >
                       {item.value}
                     </p>
@@ -53,7 +52,7 @@ export const ContactInfo = ({ data }: { data: PageBlocksContactInfo }) => {
                     <a
                       data-tina-field={tinaField(item, "link")}
                       href={item.link}
-                      className="text-sm text-primary hover:underline"
+                      className="text-primary hover:underline"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
