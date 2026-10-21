@@ -24,10 +24,11 @@ concurrency:
   group: "pages-${{ github.ref_name }}"
   cancel-in-progress: false
 
+# Runs on our own PR server rather than GitHub-hosted runners.
 jobs:
   # Build job
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, pr-server]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -105,7 +106,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, pr-server]
     needs: build
     steps:
       - name: Deploy to GitHub Pages
