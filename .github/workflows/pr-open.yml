@@ -6,9 +6,10 @@ env:
   NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
   TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
   NEXT_PUBLIC_TINA_BRANCH: ${{ github.head_ref }}
+# Runs on our own PR server rather than GitHub-hosted runners.
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, pr-server]
     name: Build sample
     steps:
       - uses: actions/checkout@v4
